@@ -1,10 +1,11 @@
 State.is :menu do
 	input "continue" do
-		puts "..."
+		#load latest save
 	end
 
 	input "load game" do
 		#show saves
+		#load selected save
 	end
 
 	input "new game" do
