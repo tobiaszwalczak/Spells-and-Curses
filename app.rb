@@ -6,6 +6,6 @@ Game.start do
 	header = File.read("app/assets/images/header.ascii")
 	clear
 
-	puts Rainbow(header).white().bg(:blue).bright() +"\n\n"
+	puts Rainbow(header).white().bright() +"\n\n"
 	puts "Main menu: [continue] [load game] [new game]"
 end
