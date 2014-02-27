@@ -1,6 +1,8 @@
-def clear
-	system "clear"
-end
+def clear () system "clear" end
+
+def cmd     (string) Rainbow(string).blue.bright  end
+def success (string) Rainbow(string).green.bright end
+def error   (string) Rainbow(string).red.bright   end
 
 def list (items, color = nil)
 	items.each do |item|
@@ -46,4 +48,28 @@ def input (*pattern, &block)
 			block.call
 		end
 	end
+end
+
+def help (*commands)
+	input "help" do
+		puts "Commands available:"
+		list commands
+	end
+end
+
+def say (text, speed = 0.1)
+	chars = text.split("")
+
+	if speed == :fast
+		speed = 0.05
+	elsif speed == :slow
+		speed = 0.2
+	end
+
+	chars.each do |char|
+		print char
+		sleep speed
+	end
+
+	print "\n"
 end

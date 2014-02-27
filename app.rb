@@ -7,5 +7,6 @@ Game.start do
 	clear
 
 	puts Rainbow(header).white().bright() +"\n\n"
-	puts "Main menu: [continue] [load game] [new game]"
+	puts "Type "+ cmd("help") +" to list what you can say"
+	puts "Main menu: "+ cmd("continue") +" | "+ cmd("load game") +" | "+ cmd("new game") +"\n\n"
 end

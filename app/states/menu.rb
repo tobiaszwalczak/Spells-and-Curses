@@ -9,6 +9,9 @@ State.is :menu do
 	end
 
 	input "new game" do
-		State.set :game
+		say "Your journey begins now ...", :slow
+		clear
+		say "You wake up in a old cellar."
+		State.set :game_tutorial
 	end
 end
