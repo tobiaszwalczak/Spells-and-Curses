@@ -1,0 +1,3 @@
+class SpellsAndCurses
+
+end

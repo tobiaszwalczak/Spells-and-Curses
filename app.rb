@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) +"/loader.rb"
 
 Game.start do
-	header = File.read("app/assets/images/header.txt")
+	header = File.read("app/assets/images/header.ascii")
 	clear
 
 	puts Rainbow(header).white().bg(:blue).bright() +"\n\n"
