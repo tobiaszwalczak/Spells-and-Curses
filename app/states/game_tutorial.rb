@@ -14,4 +14,8 @@ State.is :game_tutorial do
 		list cellar.has?
 		say info("Maybe the key to the door is in the Locker...")
 	end
+
+	input_else do
+		puts error("Invalid command.")
+	end
 end

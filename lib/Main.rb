@@ -52,8 +52,8 @@ def input (*pattern, &block)
 	end
 end
 
-def depending_on (condition, *block)
-	if condition == true
+def input_else (&block)
+	if Command.done? == false
 		block.call
 	end
 end
