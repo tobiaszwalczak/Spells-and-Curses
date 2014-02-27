@@ -1,8 +1,9 @@
 def clear () system "clear" end
 
-def cmd     (string) Rainbow(string).blue.bright  end
-def success (string) Rainbow(string).green.bright end
-def error   (string) Rainbow(string).red.bright   end
+def cmd     (string) Rainbow(string).blue.bright   end
+def success (string) Rainbow(string).green.bright  end
+def error   (string) Rainbow(string).red.bright    end
+def info    (string) Rainbow(string).yellow.bright end
 
 def list (items, color = nil)
 	items.each do |item|
@@ -46,7 +47,14 @@ def input (*pattern, &block)
 	else
 		if pattern.include?(Command.get)
 			block.call
+			Command.log = Command.get
 		end
+	end
+end
+
+def depending_on (condition, *block)
+	if condition == true
+		block.call
 	end
 end
 
@@ -57,11 +65,13 @@ def help (*commands)
 	end
 end
 
-def say (text, speed = 0.1)
+def say (text, speed = 0.07)
 	chars = text.split("")
 
 	if speed == :fast
 		speed = 0.05
+	elsif speed == :very_fast
+		speed = 0.002
 	elsif speed == :slow
 		speed = 0.2
 	end

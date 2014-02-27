@@ -1,4 +1,6 @@
 State.is :menu do
+	help "continue", "load game", "new game"
+
 	input "continue" do
 		#load latest save
 	end
@@ -9,9 +11,9 @@ State.is :menu do
 	end
 
 	input "new game" do
-		say "Your journey begins now ...", :slow
 		clear
-		say "You wake up in a old cellar."
+		sleep 1
+		say "You wake up in an old cellar."
 		State.set :game_tutorial
 	end
 end
