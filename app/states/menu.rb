@@ -13,7 +13,9 @@ State.is :menu do
 	input "new game" do
 		clear
 		sleep 1
-		say "You wake up in an old cellar."
+		say "I woke up in an old cellar. I need to get out here."
 		State.set :game_tutorial
 	end
+
+	input_else do puts error("Invalid command.") end
 end

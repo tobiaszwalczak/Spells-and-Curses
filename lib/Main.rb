@@ -58,9 +58,11 @@ def input_else (&block)
 	end
 end
 
+def setup (*block) block.call end
+
 def help (*commands)
 	input "help" do
-		puts "Commands available:"
+		puts "I can say:"
 		list commands
 	end
 end
