@@ -58,8 +58,6 @@ def input_else (&block)
 	end
 end
 
-def setup (*block) block.call end
-
 def help (*commands)
 	input "help" do
 		puts "I can say:"
@@ -73,7 +71,7 @@ def say (text, speed = 0.07)
 	if speed == :fast
 		speed = 0.05
 	elsif speed == :very_fast
-		speed = 0.002
+		speed = 0.001
 	elsif speed == :slow
 		speed = 0.2
 	end
@@ -84,4 +82,10 @@ def say (text, speed = 0.07)
 	end
 
 	print "\n"
+end
+
+def destroy (*vars)
+	vars.each do |var|
+		var = nil
+	end
 end

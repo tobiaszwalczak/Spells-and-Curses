@@ -1,15 +1,13 @@
 State.is :game_tutorial do
-	# setup do
-	# 	player = Player.new
-
+	if State.setup?
 	 	cellar = Location.new
-	 	cellar.has "Door", "Window", "Chest"
+	 	cellar.has("Door", "Window", "Chest")
 
-	# 	cellar_door = Door.new :locked, "cellar_key"
+		door = Door.new :locked, "Key to cellar door"
 
-	# 	cellar_chest = Container.new
-	# 	cellar_chest.fill "cellar key", "wooden sword", "apple"
-	# end
+		chest = Container.new
+		chest.fill("Key to cellar door", "Wooden sword", "An apple")
+	end
 
 	help "leave cellar", "what is in the room?", "open chest"
 
@@ -17,12 +15,28 @@ State.is :game_tutorial do
 		say error("The door is locked and I don't have the key.")
 	end
 
-	input "what can i see?", "what is in the room?", 
-				"what is in here?", "what is here?" do
+	input "open window", "go trough window" do
+		say error("The window can't be opened.")
+	end
+
+	input "what can i see?", "what is in the room?", "what is in here?" do
 		say "I can see:"
 		list cellar.has?
 		say info("Maybe the key to the door is in the Chest...")
 	end
 
-	input_else do puts error("Invalid command.") end
+	input "open chest" do
+		say "The chest contains:"
+		list chest.has?
+	end
+
+	input "loot chest", "loot the chest" do
+		$player.loot(chest)
+		say success("I looted the chest.")
+	end
+
+	input "inventory" do
+		say "I have:"
+		list $player.inventory
+	end
 end

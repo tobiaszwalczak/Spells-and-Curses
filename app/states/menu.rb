@@ -10,10 +10,12 @@ State.is :menu do
 		#load selected save
 	end
 
-	input "new game" do
+	input "new game", "new" do
 		clear
 		sleep 1
 		say "I woke up in an old cellar. I need to get out here."
+		$player = Player.new
+		Command.line = "Hp:"+error($player.health)+"% Mana:"+cmd($player.health)+"% > "
 		State.set :game_tutorial
 	end
 

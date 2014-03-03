@@ -7,6 +7,8 @@ State.is :all do
 
 	input "clear" do clear end
 
+	input "restart" do system("ruby app.rb") end
+
 	input "log" do
 		unless Command.log.empty?
 			puts " Your last commands:"
