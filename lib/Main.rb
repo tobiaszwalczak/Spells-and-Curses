@@ -6,62 +6,16 @@ def error   (string) Rainbow(string).red.bright    end
 def info    (string) Rainbow(string).yellow.bright end
 
 def list (items, color = nil)
+	sleep 0.5
+
 	items.each do |item|
 		if color
 			puts Rainbow("  - #{item}").color(color)
+			sleep 0.5
 		else
 			puts "  - #{item}"
+			sleep 0.5
 		end
-	end
-end
-
-def input (*pattern, &block)
-	if pattern.count == 1
-		pattern = pattern[0].to_s
-
-		if pattern.include?("[") && pattern.include?("]")
-			pattern_words = pattern.split(" ")
-			regex, vars = [], []
-
-			pattern_words.each do |word|
-				if word.include?("[") && word.include?("]")
-					regex.push(word.gsub(/\[(.*)\]/, "(.*)"))
-					vars.push(word.tr("][",""))
-				else
-					regex.push(word)
-				end
-			end
-
-			regex = Regexp.new regex.join(" ")
-			
-			if Command.get =~ regex
-				match = regex.match(Command.get).to_a
-				match.shift
-				block.call(*match)
-				Command.log = Command.get
-			end
-		elsif pattern == Command.get
-			block.call
-			Command.log = Command.get
-		end
-	else
-		if pattern.include?(Command.get)
-			block.call
-			Command.log = Command.get
-		end
-	end
-end
-
-def input_else (&block)
-	if Command.done? == false
-		block.call
-	end
-end
-
-def help (*commands)
-	input "help" do
-		puts "I can say:"
-		list commands
 	end
 end
 
@@ -82,10 +36,4 @@ def say (text, speed = 0.07)
 	end
 
 	print "\n"
-end
-
-def destroy (*vars)
-	vars.each do |var|
-		var = nil
-	end
 end

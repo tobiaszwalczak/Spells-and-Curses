@@ -3,6 +3,7 @@
 require File.dirname(__FILE__) +"/loader.rb"
 
 Game.start do
+	State.set :Menu
 	header = File.read("app/assets/images/header.ascii")
 	clear
 

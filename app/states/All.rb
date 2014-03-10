@@ -1,4 +1,4 @@
-State.is :all do
+class All < State
 	input "exit", "quit" do
 		say "See you later..."
 		clear
