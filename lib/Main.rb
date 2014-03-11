@@ -6,34 +6,38 @@ def error   (string) Rainbow(string).red.bright    end
 def info    (string) Rainbow(string).yellow.bright end
 
 def list (items, color = nil)
-	sleep 0.5
+  sleep 0.5
 
-	items.each do |item|
-		if color
-			puts Rainbow("  - #{item}").color(color)
-			sleep 0.5
-		else
-			puts "  - #{item}"
-			sleep 0.5
-		end
-	end
+  items.each do |item|
+    if color
+      puts Rainbow("  - #{item}").color(color)
+      sleep 0.5
+    else
+      puts "  - #{item}"
+      sleep 0.5
+    end
+  end
 end
 
 def say (text, speed = 0.07)
-	chars = text.split("")
+  chars = text.split("")
 
-	if speed == :fast
-		speed = 0.05
-	elsif speed == :very_fast
-		speed = 0.001
-	elsif speed == :slow
-		speed = 0.2
-	end
+  if speed == :fast
+    speed = 0.05
+  elsif speed == :very_fast
+    speed = 0.001
+  elsif speed == :slow
+    speed = 0.2
+  end
 
-	chars.each do |char|
-		print char
-		sleep speed
-	end
+  chars.each do |char|
+    print char
+    sleep speed
+  end
 
-	print "\n"
+  print "\n"
+end
+
+def br
+  print "\n"
 end

@@ -1,30 +1,33 @@
 class Container
-	def initialize (key = nil)
-		@key = key unless key == nil
-		@inventory = []
-	end
+  attr_accessor :name, :key, :inventory
 
-	def fill (*items)
-		@inventory = items
-	end
+  def initialize (name, key = nil)
+    @name = name
+    @key = key unless key == nil
+    @inventory = []
+  end
 
-	def has? (item = nil)
-		if item.nil?
-			if @inventory.empty?
-				["Nothing"]
-			else
-				@inventory
-			end
-		else 
-			if @inventory.include?(item)
-				true
-			else 
-				false
-			end
-		end
-	end
+  def fill (*items)
+    @inventory = items
+  end
 
-	def empty!
-		@inventory = []
-	end
+  def has? (item = nil)
+    if item.nil?
+      if @inventory.empty?
+        ["Nothing"]
+      else
+        @inventory
+      end
+    else 
+      if @inventory.include?(item)
+        true
+      else 
+        false
+      end
+    end
+  end
+
+  def empty!
+    @inventory = []
+  end
 end

@@ -1,48 +1,46 @@
 class GameTutorial < State
-	setup do
-	 	@cellar = Location.new
-	 	@cellar.has("Door", "Window", "Chest")
+  setup do
+    @cellar = Location.new "Cellar"
+    @cellar.has("Door", "Chest")
 
-		@door = Door.new :locked, "Key to cellar door"
+    @door = Door.new("Cellar door", :locked, "Key to cellar door")
 
-		@chest = Container.new
-		@chest.fill("Key to cellar door", "Wooden sword", "An apple")
+    @chest = Container.new "Cellar chest"
+    @chest.fill(
+      Key.new    ("Key to cellar door", @door),
+      Weapon.new ("Wooden sword", 8..10),
+      Food.new   ("Apple", 5, 0),
+      Spell.new  ("Fireball", 8..10)
+    )
+  end
 
-		@testy = "testy test..."
-	end
+  help "leave cellar", "what can i see?"
 
-	help "leave cellar", "what can i see?"
+  input "leave cellar", "open door" do
+    say error("The door is locked and I don't have the key.")
+  end
 
-	input "leave cellar", "open door" do
-		say error("The door is locked and I don't have the key.")
-	end
+  input "what can i see?" do
+    say "I can see:"
+    list @cellar.has?
+    say info("Tutorial: To leave rooms type: 'open door' or 'leave [room]'")
+    say info("Tutorial: To open things type: 'open [thing]'")
+  end
 
-	input "open window", "go trough window" do
-		say error("The window can't be opened.")
-	end
+  input "open chest" do
+    say "The chest contains:"
+    list @chest.has?
+    say info("Tutorial: To take what's in an container type: 'loot [container]'")
+  end
 
-	input "what can i see?", "what is in the room?", "what is in here?" do
-		say "I can see:"
-		list @cellar.has?
-		say info("Maybe the key to the door is in the Chest...")
-	end
+  input "loot chest" do
+    $player.loot(@chest)
+    say success("I looted the chest.")
+    say info("Tutorial: To list what you are carrying type: 'inventory'")
+  end
 
-	input "open chest" do
-		say "The chest contains:"
-		list @chest.has?
-	end
-
-	input "test" do
-		puts @testy.inspect
-	end
-
-	input "loot chest", "loot the chest" do
-		$player.loot(@chest)
-		say success("I looted the chest.")
-	end
-
-	input "inventory" do
-		say "I have:"
-		list $player.inventory
-	end
+  input "inventory" do
+    say "I have:"
+    list $player.inventory
+  end
 end

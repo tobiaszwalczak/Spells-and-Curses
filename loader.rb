@@ -8,5 +8,5 @@ require cur_dir +"/lib/Game.rb"
 require cur_dir +"/lib/Command.rb"
 
 Dir[cur_dir +"/app/objects/*.rb"].each do |file|
-	require file
+  require file
 end
