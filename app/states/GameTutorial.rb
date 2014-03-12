@@ -7,24 +7,29 @@ class GameTutorial < State
 
     @chest = Container.new "Cellar chest"
     @chest.fill(
-      Key.new    ("Key to cellar door", @door),
-      Weapon.new ("Wooden sword", 8..10),
-      Food.new   ("Apple", 5, 0),
-      Spell.new  ("Fireball", 8..10)
+      Key.new("Key to cellar door", @door),
+      Weapon.new("Wooden sword", 8..10),
+      Food.new("Apple", 5, 0),
+      Spell.new("Fireball", 8..10)
     )
   end
 
   help "leave cellar", "what can i see?"
 
   input "leave cellar", "open door" do
-    say error("The door is locked and I don't have the key.")
+    if $player.has?("Key to cellar door")
+      @door.open!
+      say success("You opened the door.")
+    else
+      say error("The door is locked and I don't have the key.")
+    end
   end
 
   input "what can i see?" do
     say "I can see:"
     list @cellar.has?
     say info("Tutorial: To leave rooms type: 'open door' or 'leave [room]'")
-    say info("Tutorial: To open things type: 'open [thing]'")
+    say info("Tutorial: To open a thing type: 'open [thing]'")
   end
 
   input "open chest" do
@@ -42,5 +47,6 @@ class GameTutorial < State
   input "inventory" do
     say "I have:"
     list $player.inventory
+    say info("Tutorial: To drop an item type: 'drop [item]'")
   end
 end
