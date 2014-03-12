@@ -19,15 +19,15 @@ def list (items, color = nil)
   end
 end
 
-def say (text, speed = 0.07)
+def say (text, speed = 0.05)
   chars = text.split("")
 
   if speed == :fast
-    speed = 0.05
+    speed = 0.03
   elsif speed == :very_fast
     speed = 0.001
   elsif speed == :slow
-    speed = 0.2
+    speed = 0.1
   end
 
   chars.each do |char|
