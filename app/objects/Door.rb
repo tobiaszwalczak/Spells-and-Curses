@@ -11,7 +11,7 @@ class Door
     @locked == :locked ? true : false
   end
 
-  def open
+  def open!
     @locked = :open
   end
 end

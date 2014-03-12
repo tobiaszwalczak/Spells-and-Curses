@@ -8,7 +8,9 @@ class Container
   end
 
   def fill (*items)
-    @inventory = items
+    items.each do |item|
+      @inventory.push(item)
+    end
   end
 
   def has? (item = nil)
@@ -16,7 +18,7 @@ class Container
       if @inventory.empty?
         ["Nothing"]
       else
-        @inventory
+        @inventory.map(&:name)
       end
     else 
       if @inventory.include?(item)

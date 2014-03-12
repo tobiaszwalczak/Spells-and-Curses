@@ -7,8 +7,20 @@ class Player
     @inventory = []
   end
 
+  def inventory
+    @inventory.map(&:name)
+  end
+
+  def has? (item)
+    if @inventory.map(&:name).include?(item)
+      true
+    else
+      false
+    end
+  end
+
   def loot (container)
-    inventory = container.has?
+    inventory = container.inventory
 
     inventory.each do |item|
       @inventory.push(item)
